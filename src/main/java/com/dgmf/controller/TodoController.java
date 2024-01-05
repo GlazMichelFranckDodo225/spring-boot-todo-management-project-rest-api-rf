@@ -42,7 +42,7 @@ public class TodoController {
     }
 
     // Update Todo REST API
-    @PutMapping("{id}")
+    @PutMapping("/{id}")
     public ResponseEntity<TodoDtoResponse> updateTodo(
             @PathVariable("id") Long todoId,
             @RequestBody TodoDtoRequest todoDtoRequest
@@ -53,12 +53,20 @@ public class TodoController {
     }
 
     // Delete Todo REST API
-    @DeleteMapping("{id}")
+    @DeleteMapping("/{id}") // Update existing Resource Totally
     public ResponseEntity<String> deleteTodo(@PathVariable("id") Long todoId) {
         todoService.deleteTodo(todoId);
 
         return ResponseEntity.ok(
                 "Todo with Id " + todoId + " Deleted Successfully"
         );
+    }
+
+    // Complete Todo REST API
+    @PatchMapping("/{id}/complete") // Update existing Resource Partially
+    public ResponseEntity<TodoDtoResponse> CompleteTodo(
+            @PathVariable("id") Long todoId
+    ) {
+        return ResponseEntity.ok(todoService.CompleteTodo(todoId));
     }
 }
