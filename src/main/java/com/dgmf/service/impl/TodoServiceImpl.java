@@ -3,6 +3,7 @@ package com.dgmf.service.impl;
 import com.dgmf.dto.TodoDtoRequest;
 import com.dgmf.dto.TodoDtoResponse;
 import com.dgmf.entity.Todo;
+import com.dgmf.exception.ResourceNotFoundException;
 import com.dgmf.repository.TodoRepository;
 import com.dgmf.service.TodoService;
 import lombok.RequiredArgsConstructor;
@@ -28,7 +29,12 @@ public class TodoServiceImpl implements TodoService {
 
     @Override
     public TodoDtoResponse getTodo(Long todoId) {
-        Todo todo = todoRepository.findById(todoId).get();
+        // Todo todo = todoRepository.findById(todoId).get();
+        Todo todo = todoRepository.findById(todoId).orElseThrow(
+                    () -> new ResourceNotFoundException(
+                            "Todo Not Found with id : " + todoId
+                )
+        );
         TodoDtoResponse todoDtoResponse =
                 modelMapper.map(todo, TodoDtoResponse.class);
 
