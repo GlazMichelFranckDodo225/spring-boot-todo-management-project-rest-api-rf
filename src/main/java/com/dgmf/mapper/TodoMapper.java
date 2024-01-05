@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class TodoMapper {
-    public TodoDtoResponse mapToTodoDtoResponse(Todo todo) {
+    public static TodoDtoResponse mapToTodoDtoResponse(Todo todo) {
         TodoDtoResponse todoDtoResponse = TodoDtoResponse.builder()
                 .id(todo.getId())
                 .title(todo.getTitle())
@@ -18,7 +18,7 @@ public class TodoMapper {
         return todoDtoResponse;
     }
 
-    public Todo mapToTodo(TodoDtoRequest todoDtoRequest) {
+    public static Todo mapToTodo(TodoDtoRequest todoDtoRequest) {
         Todo todo = Todo.builder()
                 .title(todoDtoRequest.getTitle())
                 .description(todoDtoRequest.getDescription())
