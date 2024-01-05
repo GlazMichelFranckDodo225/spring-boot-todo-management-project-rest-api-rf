@@ -69,4 +69,13 @@ public class TodoController {
     ) {
         return ResponseEntity.ok(todoService.CompleteTodo(todoId));
     }
+
+    // In Complete Todo REST API
+    @PatchMapping("/{id}/in-complete") // Update existing Resource Partially
+    public ResponseEntity<TodoDtoResponse> inCompleteTodo(
+            @PathVariable("id") Long todoId
+    ) {
+        return ResponseEntity.ok(todoService.InCompleteTodo(todoId));
+    }
+
 }

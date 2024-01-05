@@ -100,4 +100,21 @@ public class TodoServiceImpl implements TodoService {
 
         return todoDtoResponse;
     }
+
+    @Override
+    public TodoDtoResponse InCompleteTodo(Long todoId) {
+        Todo foundTodo = todoRepository.findById(todoId).orElseThrow(() ->
+                new ResourceNotFoundException("Todo Not Found with Id : " + todoId)
+        );
+
+        foundTodo.setCompleted(Boolean.FALSE);
+
+        Todo updatedTodo = todoRepository.save(foundTodo);
+
+        TodoDtoResponse todoDtoResponse = modelMapper.map(
+                updatedTodo, TodoDtoResponse.class
+        );
+
+        return todoDtoResponse;
+    }
 }
