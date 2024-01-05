@@ -6,10 +6,7 @@ import com.dgmf.service.TodoService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/v1/todos")
@@ -26,5 +23,13 @@ public class TodoController {
                 todoService.addTodo(todoDtoRequest),
                 HttpStatus.CREATED
         );
+    }
+
+    // Get Todo REST API
+    @GetMapping("/{id}")
+    public ResponseEntity<TodoDtoResponse> getTodo(
+            @PathVariable("id") Long todoId
+    ) {
+        return ResponseEntity.ok(todoService.getTodo(todoId));
     }
 }

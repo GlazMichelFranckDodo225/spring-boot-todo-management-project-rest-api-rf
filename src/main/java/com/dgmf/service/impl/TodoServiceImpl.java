@@ -25,4 +25,13 @@ public class TodoServiceImpl implements TodoService {
 
         return todoDtoResponse;
     }
+
+    @Override
+    public TodoDtoResponse getTodo(Long todoId) {
+        Todo todo = todoRepository.findById(todoId).get();
+        TodoDtoResponse todoDtoResponse =
+                modelMapper.map(todo, TodoDtoResponse.class);
+
+        return todoDtoResponse;
+    }
 }
