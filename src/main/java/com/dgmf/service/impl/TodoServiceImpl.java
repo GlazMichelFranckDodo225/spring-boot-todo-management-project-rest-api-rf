@@ -74,4 +74,13 @@ public class TodoServiceImpl implements TodoService {
 
         return todoDtoResponse;
     }
+
+    @Override
+    public void deleteTodo(Long todoId) {
+        Todo foundTodo = todoRepository.findById(todoId).orElseThrow(() ->
+                new ResourceNotFoundException("Todo Not Found with Id : " + todoId)
+        );
+
+        todoRepository.delete(foundTodo);
+    }
 }
