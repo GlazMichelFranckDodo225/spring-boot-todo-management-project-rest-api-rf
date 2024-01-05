@@ -8,4 +8,5 @@ import java.util.List;
 public interface TodoService {
     TodoDtoResponse addTodo(TodoDtoRequest todoDtoRequest);
     TodoDtoResponse getTodo(Long todoId);
+    List<TodoDtoResponse> getAllTodos();
 }

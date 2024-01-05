@@ -10,6 +10,9 @@ import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 @RequiredArgsConstructor
 public class TodoServiceImpl implements TodoService {
@@ -39,5 +42,15 @@ public class TodoServiceImpl implements TodoService {
                 modelMapper.map(todo, TodoDtoResponse.class);
 
         return todoDtoResponse;
+    }
+
+    @Override
+    public List<TodoDtoResponse> getAllTodos() {
+        List<Todo> todos = todoRepository.findAll();
+        List<TodoDtoResponse> todoDtoResponses = todos.stream()
+                .map(todo -> modelMapper.map(todo, TodoDtoResponse.class))
+                .collect(Collectors.toList());
+
+        return todoDtoResponses;
     }
 }

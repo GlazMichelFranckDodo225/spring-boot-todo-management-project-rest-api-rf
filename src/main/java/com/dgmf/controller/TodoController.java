@@ -8,6 +8,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/v1/todos")
 @RequiredArgsConstructor
@@ -31,5 +33,11 @@ public class TodoController {
             @PathVariable("id") Long todoId
     ) {
         return ResponseEntity.ok(todoService.getTodo(todoId));
+    }
+
+    // Get All Todos REST API
+    @GetMapping
+    public ResponseEntity<List<TodoDtoResponse>> getAllTodos() {
+        return ResponseEntity.ok(todoService.getAllTodos());
     }
 }
