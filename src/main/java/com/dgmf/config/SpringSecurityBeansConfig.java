@@ -2,6 +2,7 @@ package com.dgmf.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.core.userdetails.User;
@@ -21,9 +22,38 @@ public class SpringSecurityBeansConfig {
         httpSecurity
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(
-                        authorize -> authorize
-                                .anyRequest()
-                                .authenticated()
+                        authorize -> {
+                            // Only ADMIN Role
+                            authorize.requestMatchers(
+                                    HttpMethod.POST,
+                                    "/api/v1/**"
+                            ).hasRole("ADMIN");
+                            authorize.requestMatchers(
+                                    HttpMethod.PUT,
+                                    "/api/v1/**"
+                            ).hasRole("ADMIN");
+                            authorize.requestMatchers(
+                                    HttpMethod.DELETE,
+                                    "/api/v1/**"
+                            ).hasRole("ADMIN");
+                            // ADMIN and USER Roles
+                            authorize.requestMatchers(
+                                    HttpMethod.GET,
+                                    "/api/v1/**"
+                            ).hasAnyRole("ADMIN", "USER");
+                            authorize.requestMatchers(
+                                    HttpMethod.PATCH,
+                                    "/api/v1/**"
+                            ).hasAnyRole("ADMIN", "USER");
+                            // To Provide Public Access to a Particular
+                            // HTTP Method ==> Remember to adjust above
+                            /*authorize.requestMatchers(
+                                    HttpMethod.GET,
+                                    "/api/v1/**"
+                            ).permitAll();*/
+                            // All other Requests must be Authenticated
+                            authorize.anyRequest().authenticated();
+                        }
                 )
                 .httpBasic(Customizer.withDefaults());
 
