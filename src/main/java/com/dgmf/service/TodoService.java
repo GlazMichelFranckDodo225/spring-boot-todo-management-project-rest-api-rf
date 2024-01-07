@@ -1,7 +1,7 @@
 package com.dgmf.service;
 
-import com.dgmf.dto.todo.TodoDtoRequest;
-import com.dgmf.dto.todo.TodoDtoResponse;
+import com.dgmf.dto.TodoDtoRequest;
+import com.dgmf.dto.TodoDtoResponse;
 
 import java.util.List;
 

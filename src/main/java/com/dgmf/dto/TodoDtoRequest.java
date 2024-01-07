@@ -1,4 +1,4 @@
-package com.dgmf.dto.todo;
+package com.dgmf.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

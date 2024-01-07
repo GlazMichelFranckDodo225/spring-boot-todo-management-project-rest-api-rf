@@ -1,7 +1,7 @@
 package com.dgmf.service.impl;
 
-import com.dgmf.dto.todo.TodoDtoRequest;
-import com.dgmf.dto.todo.TodoDtoResponse;
+import com.dgmf.dto.TodoDtoRequest;
+import com.dgmf.dto.TodoDtoResponse;
 import com.dgmf.entity.Todo;
 import com.dgmf.exception.ResourceNotFoundException;
 import com.dgmf.repository.TodoRepository;
