@@ -1,7 +1,7 @@
 package com.dgmf.controller;
 
-import com.dgmf.dto.TodoDtoRequest;
-import com.dgmf.dto.TodoDtoResponse;
+import com.dgmf.dto.todo.TodoDtoRequest;
+import com.dgmf.dto.todo.TodoDtoResponse;
 import com.dgmf.service.TodoService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
