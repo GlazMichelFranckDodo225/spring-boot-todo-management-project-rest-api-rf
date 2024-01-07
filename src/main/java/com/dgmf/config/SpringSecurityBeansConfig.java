@@ -4,6 +4,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.Customizer;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -14,6 +15,7 @@ import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
+@EnableMethodSecurity
 public class SpringSecurityBeansConfig {
     // Secure All Application Urls
     @Bean
@@ -23,7 +25,7 @@ public class SpringSecurityBeansConfig {
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(
                         authorize -> {
-                            // Only ADMIN Role
+                            /*// Only ADMIN Role
                             authorize.requestMatchers(
                                     HttpMethod.POST,
                                     "/api/v1/**"
@@ -44,7 +46,7 @@ public class SpringSecurityBeansConfig {
                             authorize.requestMatchers(
                                     HttpMethod.PATCH,
                                     "/api/v1/**"
-                            ).hasAnyRole("ADMIN", "USER");
+                            ).hasAnyRole("ADMIN", "USER");*/
                             // To Provide Public Access to a Particular
                             // HTTP Method ==> Remember to adjust above
                             /*authorize.requestMatchers(
